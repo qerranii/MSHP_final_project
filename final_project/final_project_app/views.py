@@ -19,7 +19,7 @@ def log_in_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('general/index.html')
         else:
             context['error'] = "Invalid username or password"
             print('1')
