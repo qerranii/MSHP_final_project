@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from final_project_app.models import User
+from final_project_app.models import Info
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 def index_page(request):
@@ -22,10 +24,14 @@ def sign_up_page(request):
         chest = request.POST['chest']
         waist = request.POST['waist']
         hips = request.POST['hips']
+        about_me = request.POST['about']
         if password == password2:
-            user = User.objects.create_user(username, email, password, height, weight, chest, waist, hips)
             try:
+                user = User.objects.create_user(username, email, password)
+                info = Info(user=user, height=int(height), weight=int(weight),
+                            chest=int(chest), waist=int(waist), hips=int(hips), about_me=about_me)
                 user.save()
+                info.save()
                 return redirect('/profile')
             except:
                 raise NotImplementedError

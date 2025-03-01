@@ -1,13 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
-class User(AbstractUser):
-    height = models.IntegerField(max_length=3)
-    weight = models.IntegerField(max_length=3)
-    chest = models.IntegerField(max_length=3)
-    waist = models.IntegerField(max_length=3)
-    hips = models.IntegerField(max_length=3)
-    about_me = models.CharField()
+class Info(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    height = models.IntegerField()
+    weight = models.IntegerField()
+    chest = models.IntegerField()
+    waist = models.IntegerField()
+    hips = models.IntegerField()
+    about_me = models.CharField(max_length=300)
 
 # Create your models here.
