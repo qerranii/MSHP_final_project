@@ -2,7 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from final_project_app.models import Info
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 
@@ -47,7 +48,8 @@ def sign_up_page(request):
                             chest=int(chest), waist=int(waist), hips=int(hips), about_me=about_me)
                 user.save()
                 info.save()
-                return redirect('/profile')
+                logout(request)
+                return redirect('/log_in')
             except:
                 raise NotImplementedError
         else:
@@ -79,6 +81,7 @@ def profile_edit_page(request):
             info.hips = request.POST['hips']
             info.about_me = request.POST['about']
             info.save()
+            login(request, user)
             return redirect('/profile')
         except:
             raise SystemError
