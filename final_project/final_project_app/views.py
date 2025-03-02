@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 
 def index_page(request):
     context = {}
-    return render(request, "/profile", context)
+    return render(request, "profile/profile.html", context)
 
 def log_in_page(request):
     context = {}
