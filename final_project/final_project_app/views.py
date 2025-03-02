@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 
 def index_page(request):
     context = {}
-    return render(request, "general/index.html", context)
+    return render(request, "/profile", context)
 
 def log_in_page(request):
     context = {}
@@ -19,7 +19,7 @@ def log_in_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('general/index.html')
+            return redirect("/profile")
         else:
             context['error'] = "Invalid username or password"
             print('1')
