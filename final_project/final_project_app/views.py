@@ -63,6 +63,26 @@ def profile_page(request):
 
 def profile_edit_page(request):
     context = {}
+    user = request.user
+    if request.method == 'POST':
+        user.username = request.POST['username']
+        user.email = request.POST['email']
+        try:
+            if request.POST['password1'] == request.POST['password2']:
+                user.set_password(request.POST['password1'])
+            user.save()
+            info = Info.objects.get(user=user)
+            info.height= request.POST['height']
+            info.weight = request.POST['weight']
+            info.chest = request.POST['chest']
+            info.waist = request.POST['waist']
+            info.hips = request.POST['hips']
+            info.about_me = request.POST['about']
+            info.save()
+            return redirect('/profile')
+        except:
+            raise SystemError
+
     return render(request, "profile/profile_edit.html", context)
 
 def gallery_liked_page(request):
