@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from final_project_app.models import Info
 from django.contrib.auth.models import User
@@ -7,7 +8,7 @@ from django.contrib.auth import authenticate, login
 
 def index_page(request):
     context = {}
-    return render(request, "profile/profile.html", context)
+    return render(request, "general/index.html", context)
 
 def log_in_page(request):
     context = {}
@@ -53,8 +54,11 @@ def sign_up_page(request):
             raise NotImplementedError
     return render(request, "auth/sign_up.html", context)
 
+
+@login_required
 def profile_page(request):
     context = {}
+    context['info'] = Info.objects.get(user=request.user)
     return render(request, "profile/profile.html", context)
 
 def profile_edit_page(request):
