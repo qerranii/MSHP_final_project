@@ -19,6 +19,8 @@ from django.urls import path
 from final_project_app.views import *
 
 
+handler404 = Handle500
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page, name='index'),
