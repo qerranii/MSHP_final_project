@@ -2,14 +2,17 @@ from lib2to3.fixes.fix_input import context
 
 from django.http import HttpResponseServerError
 from django.shortcuts import render
-from django.http import HttpResponseServerError
+from django.http import HttpResponseServerError, HttpResponseRedirect
 from django.urls import path
 
 
 # Create your views here.
 
 def Handle500(request, exception = None):
-    return render(request, "Handle/Error500.html", status = 500)
+    print(request.path)
+    if not request.path.endswith('/'):
+        return HttpResponseRedirect(request.path + '/')
+    return render(request, "Handle/Error500.html", status=500)
 
 def index_page(request):
     context = {}

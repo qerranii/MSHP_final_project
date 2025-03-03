@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import APPEND_SLASH
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,6 +30,7 @@ DEBUG = False #ДЛЯ ПРОВЕРОК ОШИБОК ВКЛЮЧИТЬ!
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
+APPEND_SLASH = True
 
 # Application definition
 
