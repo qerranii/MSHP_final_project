@@ -1,6 +1,22 @@
 from django.shortcuts import render
+import requests
+import json
 
 # Create your views here.
+
+def test_page(request):
+    context = {}
+    if(request.method == 'POST'):
+        js = {
+            "user": "name",
+            "id": 4,
+            "rating": 5
+        }
+        # Сериализуем JSON-объект в строку
+        js_str = json.dumps(js)
+        r = requests.get(f'http://127.0.0.1:8081/getrec?data={js_str}')
+        print(r.text)
+    return render(request, 'test.html', context)
 
 def index_page(request):
     context = {}
