@@ -8,8 +8,8 @@ def test_page(request):
     context = {}
     if(request.method == 'POST'):
         js = {
-            "user": "name",
-            "id": 4,
+            "id_user": "name",
+            "id_item": 4,
             "rating": 5
         }
         # Сериализуем JSON-объект в строку
