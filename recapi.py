@@ -10,8 +10,9 @@ def learn():
 def get_rec():
     data_str = request.args.get('data', '')
     data = json.loads(data_str)
-    data["a"] += 2
-    data["b"] += 3
+    data["id_user"] += "a"
+    data["id_item"] += 3
+    data["rating"] += 2
     return jsonify(data)
 
 @app.route('/')
