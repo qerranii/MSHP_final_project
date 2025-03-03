@@ -10,7 +10,6 @@ def learn():
 def get_rec():
     data_str = request.args.get('data', '')
     data = json.loads(data_str)
-    data["id_user"] += "a"
     data["id_item"] += 3
     data["rating"] += 2
     return jsonify(data)
