@@ -7,10 +7,11 @@ from django.urls import path
 # Create your views here.
 
 def Handle400(request, exception = None):
-    print(request.path)
-    if not request.path.endswith('/'):
-        return HttpResponseRedirect(request.path + '/')
-    return render(request, "Handle/Error400.html", status=500)
+    context = {}
+    # print(request.path)
+    # if not request.path.endswith('/'):
+    #     return HttpResponseRedirect(request.path + '/')
+    return render(request, "Handle/Error400.html", context)
 
 def index_page(request):
     context = {}
