@@ -31,4 +31,5 @@ urlpatterns = [
     path('scrolling/', scrolling_page, name='scrolling'),
     path('about/', about_page, name='about'),
     path('terms/', terms_page, name='terms'),
+    path('for_you/', for_you_page, name='for_you'),
 ]

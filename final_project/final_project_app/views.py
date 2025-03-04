@@ -42,5 +42,7 @@ def terms_page(request):
     context = {}
     return render(request, "general/terms.html", context)
 
-
+def for_you_page(request):
+    context = {}
+    return render(request, "outfits/for_you.html", context)
 
