@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from final_project_app.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 handler404 = Handle400
@@ -33,5 +35,7 @@ urlpatterns = [
     path('scrolling/', scrolling_page, name='scrolling'),
     path('about/', about_page, name='about'),
     path('terms/', terms_page, name='terms'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-]
+
+

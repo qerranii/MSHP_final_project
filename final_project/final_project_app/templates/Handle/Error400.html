@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
 </head>
 <body>
-     <h1> MEEOW </h1>
+<style>
+    body {
+        display: flex;
+        background-color: #7bbcd5;
+        text-align: center;
+    }
+    h1 {
+
+        font-size: 3rem;
+        color: #333;
+    }
+
+</style>
+
+     <h1> 400 </h1>
+    <img src="{% static 'final_project_app/cat.png' %}">
 </body>
 </html>

@@ -1,5 +1,3 @@
-from lib2to3.fixes.fix_input import context
-
 from django.http import HttpResponseServerError
 from django.shortcuts import render
 from django.http import HttpResponseServerError, HttpResponseRedirect
