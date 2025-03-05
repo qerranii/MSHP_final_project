@@ -9,6 +9,7 @@ class Info(models.Model):
     chest = models.IntegerField()
     waist = models.IntegerField()
     hips = models.IntegerField()
+    gender = models.IntegerField()
     about_me = models.CharField(max_length=300)
 
 class Comment(models.Model):
@@ -30,5 +31,13 @@ class LikePost(models.Model):
 class LikeComment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+
+class Item(models.Model):
+    pass
+
+class UserGrade(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    info = models.ForeignKey(Info, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
 # Create your models here.
