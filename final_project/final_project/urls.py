@@ -35,7 +35,6 @@ urlpatterns = [
     path('scrolling/', scrolling_page, name='scrolling'),
     path('about/', about_page, name='about'),
     path('terms/', terms_page, name='terms'),
-    path('error/', Handle400, name='123'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
