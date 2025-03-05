@@ -14,8 +14,12 @@ with open('model.pkl', 'rb') as f:
 #сделать запрос к джанго для доступа к бд
 # items_db = (запрос к джанго)
 
+def request_db() -> dict:
+    pass
+
 @app.route('/getrec', methods = ["GET"])
-def get_rec():
+def get_rec() -> json:
+    items_db = request_db()
     user_id = int(request.args.get('id_user', -1))
     if (user_id == -1):
         return jsonify({"error": "id_user is required"}), 400
