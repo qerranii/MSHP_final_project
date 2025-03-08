@@ -51,7 +51,16 @@ h2 {
 }
 
 a {
-    color: white;
+    color: #00ffe5;
+    text-decoration: none;
+}
+
+a[id="log-in-a"]{
+    color:white;
+    text-decoration: none;
+}
+a[id="sign-up-a"]{
+    color:white;
     text-decoration: none;
 }
 

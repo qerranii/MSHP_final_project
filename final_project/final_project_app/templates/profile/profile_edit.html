@@ -5,6 +5,19 @@
     <title>Edit Profile</title>
 </head>
 <body>
+    <style>
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgb(19, 30, 55);
+            font-size: 1.2em;
+            color: white
+        }
+        a {
+            color: #00ffe5;
+            text-decoration: none;
+        }
+    </style>
     <h1>Edit your profile</h1>
     <br>
     <form method="POST" action="{% url 'profile_edit' %}">
@@ -46,5 +59,9 @@
     </form>
     <br>
     <p><a href="{% url 'profile' %}">Back to Profile</a></p>
+
+    <footer>
+        {% include 'general/footer.html' %}
+    </footer>
 </body>
 </html>

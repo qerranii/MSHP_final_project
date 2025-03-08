@@ -5,6 +5,19 @@
     <title>Profile</title>
 </head>
 <body>
+    <style>
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgb(19, 30, 55);
+            font-size: 1.2em;
+            color: white
+        }
+        a {
+            color: #00ffe5;
+            text-decoration: none;
+        }
+    </style>
 
     <h1>Your profile</h1>
 
@@ -33,5 +46,9 @@
         <p><a href="{% url 'gallery_liked' %}">View Liked Posts</a></p>
         <p><a href="{% url 'profile_edit' %}">Edit Profile</a></p>
     </section>
+
+    <footer>
+        {% include 'general/footer.html' %}
+    </footer>
 </body>
 </html>
