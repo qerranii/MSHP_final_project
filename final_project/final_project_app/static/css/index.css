@@ -51,12 +51,8 @@ h2 {
 }
 
 a {
-    color: #00ffe5;
+    color: white;
     text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 section p {
@@ -149,16 +145,18 @@ blockquote::after {
 }
 
 .without-acc button{
-    background: linear-gradient(135deg, #d100d1, #6f21b8);
-    color: white;
-    border-top: 1px solid white;
-    box-shadow: 0 4px 10px rgba(138, 43, 226, 0.5);
     padding: 12px 24px;
     font-size: 1.5em;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
+
+    background: linear-gradient(135deg, #d100d1, #6f21b8);
+    color: white;
+    border-top: 1px solid white;
+    box-shadow: 0 4px 10px rgba(138, 43, 226, 0.5);
 }
 
 .without-acc button:hover {
