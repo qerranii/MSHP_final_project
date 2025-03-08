@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+</head>
+<body>
+
+    <h1>Title: {{ title }}</h1>
+
+    <section>
+        <h2>Content: {{ description }}</h2>
+        <p><strong>Author:</strong> <i>{{ author }}</i></p>
+        <p><strong>Likes:</strong> <i>{{ likes }}</i></p>
+    </section>
+
+    <a href="/send_like_post/{{ id }}" class="like-button">Like</a>
+
+    <section>
+        <h2>Comments: </h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label for="text">Text:</label>
+            <textarea id="text" name="text" rows="4" cols="50" placeholder="Enter your text here" required></textarea><br>
+
+            <button type="submit">Send comment</button>
+        </form>
+        {% for comment in comments %}
+        <div class="comment">
+            <p><strong>Username: {{ comment.user.username }}</strong></p>
+            <p>{{ comment.content }}</p>
+        </div>
+        {% endfor %}
+    </section>
+
+</body>
+</html>

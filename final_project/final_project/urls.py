@@ -31,4 +31,11 @@ urlpatterns = [
     path('scrolling/', scrolling_page, name='scrolling'),
     path('about/', about_page, name='about'),
     path('terms/', terms_page, name='terms'),
+    path('post/', post_page, name='post'),
+    path('post/<int:id>', post_page, name='post'),
+    path('send_like_post/<int:id>', send_like_post, name='like'),
+    path('create_post/', create_post_page, name='create_post'),
+    # path('item/', item_page, name='items'),
+    # path('item/<int:id>', item_page, name='item'),
+    path('catalog/', catalog_page, name='catalog'),
 ]

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Explore</title>
+</head>
+<body>
+WORK IN PROGRESS !!
+{% for item in items %}
+    <div>
+        Name: {{ item.name }}
+        Description: {{ item.description }}
+        <a href="item/{{ item.id }}">Checkout</a>
+    </div>
+{% endfor %}
+</body>
+</html>

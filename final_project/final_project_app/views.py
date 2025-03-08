@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from final_project_app.models import Info
+from final_project_app.models import Info, Comment, Post, LikePost, LikeComment
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -40,12 +40,13 @@ def sign_up_page(request):
         chest = request.POST['chest']
         waist = request.POST['waist']
         hips = request.POST['hips']
+        gender = request.POST['gender']
         about_me = request.POST['about']
         if password == password2:
             try:
                 user = User.objects.create_user(username, email, password)
                 info = Info(user=user, height=int(height), weight=int(weight),
-                            chest=int(chest), waist=int(waist), hips=int(hips), about_me=about_me)
+                            chest=int(chest), waist=int(waist), hips=int(hips), gender=int(gender), about_me=about_me)
                 user.save()
                 info.save()
                 logout(request)
@@ -63,8 +64,10 @@ def profile_page(request):
     context['info'] = Info.objects.get(user=request.user)
     return render(request, "profile/profile.html", context)
 
+@login_required
 def profile_edit_page(request):
     context = {}
+    context['info'] = Info.objects.get(user=request.user)
     user = request.user
     if request.method == 'POST':
         user.username = request.POST['username']
@@ -74,11 +77,12 @@ def profile_edit_page(request):
                 user.set_password(request.POST['password1'])
             user.save()
             info = Info.objects.get(user=user)
-            info.height= request.POST['height']
-            info.weight = request.POST['weight']
-            info.chest = request.POST['chest']
-            info.waist = request.POST['waist']
-            info.hips = request.POST['hips']
+            info.height = int(request.POST['height'])
+            info.weight = int(request.POST['weight'])
+            info.chest = int(request.POST['chest'])
+            info.waist = int(request.POST['waist'])
+            info.hips = int(request.POST['hips'])
+            info.gender = int(request.POST['gender'])
             info.about_me = request.POST['about']
             info.save()
             login(request, user)
@@ -87,6 +91,52 @@ def profile_edit_page(request):
             raise SystemError
 
     return render(request, "profile/profile_edit.html", context)
+
+@login_required
+def post_page(request, id=0):
+    print(id)
+    post = Post.objects.get(id=id)
+    if request.method == 'POST':
+        comment = Comment(user=request.user, content=request.POST['text'], post=post)
+        comment.save()
+    context = {
+        'id':id,
+        'author':post.user,
+        'title':post.title,
+        'description':post.description,
+        'image':post.image,
+        'likes':len(LikePost.objects.filter(post=post)),
+        'comments':Comment.objects.filter(post=post),
+    }
+    return render(request, "outfits/post.html", context)
+
+@login_required
+def create_post_page(request):
+    context = {}
+    if request.method == 'POST':
+        title = request.POST['title']
+        text = request.POST['description']
+       # image = request.POST['image'] #?????????
+        if title.isalnum() and text.isalnum():
+            post = Post(user=request.user, title=title, description=text)
+            post.save()
+            return redirect('/post/{}'.format(post.id))
+    return render(request, 'outfits/make_post.html', context)
+
+@login_required
+def send_like_post(request, id):
+    context = {}
+    like = LikePost.objects.filter(user=request.user, post=Post.objects.get(id=id))
+    if len(like) == 0:
+        like = LikePost(user=request.user, post=Post.objects.get(id=id))
+        like.save()
+    return redirect('/post/'+str(id))
+
+@login_required
+def catalog_page(request):
+    context = {}
+    # context['items'] = Items.objects.all
+    return render(request, 'outfits/catalog.html', context)
 
 def gallery_liked_page(request):
     context = {}
