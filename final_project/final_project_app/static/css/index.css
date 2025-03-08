@@ -33,6 +33,7 @@ section {
     width: 70%;
     padding: 30px;
     background-color: #16213e;
+    border-radius: 10px;
     box-shadow: 0px 5px 20px rgba(255, 0, 255, 0.7);
 }
 section div[id="a"]{
@@ -147,22 +148,114 @@ blockquote::after {
     color: #16213e;
 }
 
-.personalized-look button {
-    background-color: #f932fc;
+.without-acc button{
+    background: linear-gradient(135deg, #d100d1, #6f21b8);
     color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    border-radius: 5px;
+    border-top: 1px solid white;
+    box-shadow: 0 4px 10px rgba(138, 43, 226, 0.5);
+    padding: 12px 24px;
+    font-size: 1.5em;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-.personalized-look button:hover {
-    background-color: #00ffe5;
-    color: #16213e;
-    transform: scale(1.2);
+.without-acc button:hover {
+    background: linear-gradient(135deg, #ff00ff, #8e2aeb);
+    transform: scale(1.07);
+    box-shadow: 0 6px 15px rgba(138, 43, 226, 0.7);
 }
-.without-acc{
-    font-size: 40px;
+
+.log-in-have-acc button{
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 24px;
+    font-size: 1.5em;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+}
+
+.log-in-have-acc button:hover{
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.07);
+    box-shadow: 0 6px 10px rgba(138, 43, 226, 0.5);
+}
+
+.buttons {
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+}
+
+button[id="log-in"], button[id="sign-up"] {
+    padding: 12px 24px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+button[id="log-in"] {
+    background: linear-gradient(135deg, #d100d1, #6f21b8);
+    color: white;
+    border-top: 1px solid white;
+    box-shadow: 0 4px 10px rgba(138, 43, 226, 0.5);
+}
+
+button[id="log-in"]:hover {
+    background: linear-gradient(135deg, #ff00ff, #8e2aeb);
+    transform: scale(1.07);
+    box-shadow: 0 6px 15px rgba(138, 43, 226, 0.7);
+}
+
+button[id="sign-up"] {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+button[id="sign-up"]:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.07);
+    box-shadow: 0 6px 10px rgba(138, 43, 226, 0.5);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.section-animate {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-animate.fade-in {
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.section-animate.slide-up {
+    animation: slideUp 1.5s ease forwards;
 }
