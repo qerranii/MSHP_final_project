@@ -1,44 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>Main Page</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 <body>
-    <h1>Main Page</h1>
-    <div>
+        <header>
+            <h1>Welcome to<br>AI Fashion Stylist!</h1>
+            <p>Your personal AI assistant for perfect outfits</p>
+        </header>
 
-        <h1>Welcome to AI Fashion Stylist!</h1>
-        <p>Your personal AI assistant for perfect outfits</p>
-
+    <div class="buttons">
+        <button class="first-register">Log In</button>
+        <button class="first-register">Sign Up</button>
+    </div>
+    <div class="sections">
         <section>
             <h2>Outfit of the day</h2>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmuUqkZ96bcMLggccaTiDcl5AUUSpGxYuu2w&s">
             <p>Stay trendy with our AI-picked outfit of the day!</p>
         </section>
 
-        <section>
+        <section class="why-choose-us">
             <h2>Why choose us?</h2>
-            <ul>
-                <li>AI-powered fashion recommendations</li>
-                <li>Personalized styling based on your preferences</li>
-                <li>Daily outfit inspirations</li>
-                <li>Trendy looks for every occasion</li>
-            </ul>
-            <a href="{% url 'about' %}">More about us </a>
+            <div class="content">
+                <p>AI-powered fashion recommendations<br> Personalized styling based on your preferences<br>
+                Daily outfit inspirations<br>Trendy looks for every occasion</p>
+                <div id="a">
+                    <a href="{% url 'about' %}">More about us </a>
+                </div>
+            </div>
+
         </section>
 
         <section>
             <h2>What our users say</h2>
-            <blockquote>"This AI stylist completely changed my life! Highly recommended!" - Maria K.</blockquote>
-            <blockquote>"I love how easy it is to get outfit ideas based on my taste" - Alex M.</blockquote>
+            <div class="quotes">
+                <blockquote>"This AI stylist completely changed my life! Highly recommended!" - Maria K.</blockquote>
+                <blockquote>"I love how easy it is to get outfit ideas based on my taste" - Alex M.</blockquote>
+            </div>
         </section>
 
-        <section>
+        <section class="personalized-look">
             <h2>Get Your Personalized Look</h2>
-            <p>Sign up now and let AI style you every day!</p>
-            <form action="{% url 'sign_up' %}" method="get">
-                <button type="submit">Sign Up</button>
-            </form>
+            <div class="without-acc">
+                <p>Sign up now and let AI style you every day!</p>
+                <form action="{% url 'sign_up' %}" method="get">
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
             <br>
             <p>Already have an account?</p>
             <form action="{% url 'log_in' %}" method="get">
@@ -46,5 +58,9 @@
             </form>
         </section>
     </div>
+    <footer>
+        <p>&copy; 2025 AI Fashion Stylist. All rights reserved.</p>
+        <p>Follow us on <a href="https://t.me/telegram">Telegram</a> and <a href="https://vk.com/insidevk">VK</a></p>
+    </footer>
 </body>
 </html>
