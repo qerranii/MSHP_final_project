@@ -49,9 +49,17 @@ h2 {
     color: #e000e0;
     font-size: 80px;
 }
-
 a {
-    color: white;
+    color: #00ffe5;
+    text-decoration: none;
+}
+
+a[id="log-in-a"]{
+    color:white;
+    text-decoration: none;
+}
+a[id="sign-up-a"]{
+    color:white;
     text-decoration: none;
 }
 
