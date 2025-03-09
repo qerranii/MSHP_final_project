@@ -32,7 +32,10 @@ class LikeComment(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
 
 class Item(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    url = models.URLField()
+    image = models.ImageField()
+
 
 class UserGrade(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
