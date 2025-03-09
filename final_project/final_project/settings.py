@@ -29,7 +29,8 @@ SECRET_KEY = 'django-insecure-5kqh9&0*fmfh6f^qm68-*ee+@#5)q-39h#8k*r4fxo&svkxy69
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False #ДЛЯ ПРОВЕРОК ОШИБОК ВКЛЮЧИТЬ!
+DEBUG = True #ДЛЯ ПРОВЕРОК ОШИБОК ВКЛЮЧИТЬ!
+# НЕ РАБОТАЕТ CSS И КАРТИНКИ, СТАВЬТЕ DEBUG=TRUE
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -126,9 +127,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static-assets"),
-)
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
