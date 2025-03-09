@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from final_project_app.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 handler404 = Handle400
@@ -40,4 +42,5 @@ urlpatterns = [
     # path('item/', item_page, name='items'),
     # path('item/<int:id>', item_page, name='item'),
     path('catalog/', catalog_page, name='catalog'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
