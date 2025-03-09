@@ -1,3 +1,10 @@
+from lib2to3.fixes.fix_input import context
+
+from django.http import HttpResponseServerError
+from django.shortcuts import render
+from django.http import HttpResponseServerError, HttpResponseRedirect
+from django.urls import path
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from final_project_app.models import Info, Comment, Post, LikePost, LikeComment
@@ -6,6 +13,12 @@ from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
+
+def Handle400(request, exception = None):
+    print(request.path)
+    if not request.path.endswith('/'):
+        return HttpResponseRedirect(request.path + '/')
+    return render(request, "Handle/Error400.html", status=500)
 
 def index_page(request):
     context = {}
