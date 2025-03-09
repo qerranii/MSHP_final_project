@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат-бот</title>
+</head>
+<body>
+    <h2>Задайте вопрос боту</h2>
+    <form id="questionForm">
+        <label for="question">Ваш вопрос:</label><br>
+        <input type="text" id="question" name="question" required><br><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <h3>Ответ:</h3>
+    <p id="response"></p>
+
+    <script>
+        document.getElementById("questionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const question = document.getElementById("question").value;
+
+            fetch("http://127.0.0.1:8081/ask", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ question: question })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("response").innerText = data.response;
+            })
+            .catch(error => {
+                document.getElementById("response").innerText = "Ошибка отправки запроса!";
+                console.error("Ошибка:", error);
+            });
+        });
+    </script>
+</body>
+</html>
