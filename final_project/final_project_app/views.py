@@ -126,7 +126,7 @@ def post_page(request, id=0):
     }
     return render(request, "outfits/post.html", context)
 
-
+@login_required
 def make_post_page(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
