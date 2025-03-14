@@ -1,5 +1,5 @@
 from django.http import HttpResponseServerError
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseServerError, HttpResponseRedirect
 from django.urls import path
 
@@ -8,6 +8,10 @@ from django.shortcuts import render, redirect
 from final_project_app.models import Info, Comment, Post, LikePost, LikeComment
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+
+from .models import Post
+from .forms import PostForm
+from django.urls import reverse
 
 
 # Create your views here.
@@ -122,18 +126,23 @@ def post_page(request, id=0):
     }
     return render(request, "outfits/post.html", context)
 
-@login_required
-def create_post_page(request):
-    context = {}
+
+def make_post_page(request):
     if request.method == 'POST':
-        title = request.POST['title']
-        text = request.POST['description']
-       # image = request.POST['image'] #?????????
-        if title.isalnum() and text.isalnum():
-            post = Post(user=request.user, title=title, description=text)
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
             post.save()
-            return redirect('/post/{}'.format(post.id))
-    return render(request, 'outfits/make_post.html', context)
+            return redirect(reverse('posts_all'))
+    else:
+        form = PostForm()
+
+    return render(request, 'outfits/make_post.html', {'form': form})
+
+def post_list(request):
+    posts = Post.objects.all()
+    return render(request, 'outfits/posts_all.html', {'posts': posts})
 
 @login_required
 def send_like_post(request, id):
@@ -156,7 +165,7 @@ def gallery_liked_page(request):
 
 def top_outfits_page(request):
     context = {}
-    return render(request, "outfits/top_outfits.html", context)
+    return render(request, "outfits/posts_all.html", context)
 
 def scrolling_page(request):
     context = {}

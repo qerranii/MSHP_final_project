@@ -31,16 +31,18 @@ urlpatterns = [
     path('profile/', profile_page, name='profile'),
     path('profile_edit/', profile_edit_page, name='profile_edit'),
     path('gallery_liked/', gallery_liked_page, name='gallery_liked'),
-    path('top_outfits/', top_outfits_page, name='top_outfits'),
     path('scrolling/', scrolling_page, name='scrolling'),
     path('about/', about_page, name='about'),
     path('terms/', terms_page, name='terms'),
     path('post/', post_page, name='post'),
     path('post/<int:id>', post_page, name='post'),
     path('send_like_post/<int:id>', send_like_post, name='like'),
-    path('create_post/', create_post_page, name='create_post'),
     # path('item/', item_page, name='items'),
     # path('item/<int:id>', item_page, name='item'),
     path('catalog/', catalog_page, name='catalog'),
+    path('posts_all/', post_list, name='posts_all'),
+    path('make/', make_post_page, name='make_post'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+if settings.DEBUG:  # Только для режима разработки (DEBUG=True)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

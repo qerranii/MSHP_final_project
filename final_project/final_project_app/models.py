@@ -15,7 +15,7 @@ class Info(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    image = models.ImageField(default='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTADcCBM2iRy0XhD2lG7FRxBq5jLgvkwTZqWg&s')
+    image = models.ImageField(upload_to='post_images/', blank=True, null=True)
     description = models.CharField(max_length=5000)
 
 class Comment(models.Model):
