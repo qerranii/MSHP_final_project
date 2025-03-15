@@ -32,4 +32,7 @@ urlpatterns = [
     path('about/', about_page, name='about'),
     path('terms/', terms_page, name='terms'),
     path('for_you/', for_you_page, name='for_you'),
+    path('log_out/', log_out, name='log_out'),
 ]
+
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login, authenticate, logout
 # Create your views here.
 
 def index_page(request):
@@ -46,3 +47,7 @@ def for_you_page(request):
     context = {}
     return render(request, "outfits/for_you.html", context)
 
+def log_out(request):
+    """Выход из аккаунта пользователя"""
+    logout(request)
+    return redirect('index')
