@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>Make Post</title>
+    <link rel="stylesheet" href="{% static 'css/make_post.css' %}">
 </head>
 <body>
-<form method="POST" action="" enctype="multipart/form-data">
+    <header>
+        <h1>Create Your Post</h1>
+    </header>
+
+    <form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    <label for="title">Title:</label>
+    <input type="text" id="title" placeholder="Enter title" name="title" required><br>
+
+    <div >
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" accept="image/*"><br>
+    </div>
+
+    <label for="description">Text:</label>
+    <textarea id="description" name="description" rows="4" cols="50" placeholder="Start typing..." required></textarea><br>
     <button type="submit">Create post</button>
 </form>
 </body>

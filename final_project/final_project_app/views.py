@@ -109,24 +109,6 @@ def profile_edit_page(request):
     return render(request, "profile/profile_edit.html", context)
 
 @login_required
-def post_page(request, id=0):
-    print(id)
-    post = Post.objects.get(id=id)
-    if request.method == 'POST':
-        comment = Comment(user=request.user, content=request.POST['text'], post=post)
-        comment.save()
-    context = {
-        'id':id,
-        'author':post.user,
-        'title':post.title,
-        'description':post.description,
-        'image':post.image,
-        'likes':len(LikePost.objects.filter(post=post)),
-        'comments':Comment.objects.filter(post=post),
-    }
-    return render(request, "outfits/post.html", context)
-
-@login_required
 def make_post_page(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -143,6 +125,24 @@ def make_post_page(request):
 def post_list(request):
     posts = Post.objects.all()
     return render(request, 'outfits/posts_all.html', {'posts': posts})
+
+@login_required
+def post_page(request, id=0):
+    print(id)
+    post = Post.objects.get(id=id)
+    if request.method == 'POST':
+        comment = Comment(user=request.user, content=request.POST['text'], post=post)
+        comment.save()
+    context = {
+        'id':id,
+        'author':post.user,
+        'title':post.title,
+        'description':post.description,
+        'image':post.image,
+        'likes':len(LikePost.objects.filter(post=post)),
+        'comments':Comment.objects.filter(post=post),
+    }
+    return render(request, "outfits/post.html", context)
 
 @login_required
 def send_like_post(request, id):
